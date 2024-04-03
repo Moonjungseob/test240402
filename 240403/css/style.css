@@ -25,9 +25,13 @@ li{
 }
 
 #img{
-    border: 5px solid pink;
+    border: 2px solid pink;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: repeat(3.1fr) */
+  column-gap: 10px;
+  row-gap: 10px;
+
 }
 
 #grid{
