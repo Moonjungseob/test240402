@@ -371,4 +371,23 @@ select employee_id empid, hire_date hiredate, salary sal, manager_id mgr
 from employees 
 where  employee_id>200;
 
+insert all 
+into CHAP10HW_DEPT (deptno, dname, loc)
+select 50, 'ORACLE', 'BUSAN' from dual
+union all
+select 60, 'SQL', 'ILSAN' from dual
+union all
+select 70, 'SELECT', 'INCHEON' from dual
+union all
+select 80, 'DML', 'BUNDANG'  from dual;
 
+insert all 
+into CHAP10HW_EMP values (7201, 'TEST_USER1', 'MANAGER', 7788, to_date('02/01/2016','DD/MM/YYYY'), 4500, null, 50)
+into CHAP10HW_EMP values (7202, 'TEST_USER2', 'CLERK', 7201, to_date('21/02/2016','DD/MM/YYYY'), 1800, null, 50)
+into CHAP10HW_EMP values (7203, 'TEST_USER3', 'ANALYST', 7201, to_date('11/04/2016','DD/MM/YYYY'), 3400, null, 60)
+into CHAP10HW_EMP values (7204, 'TEST_USER4', 'SALESMAN', 7201, to_date('31/05/2016','DD/MM/YYYY'), 2700, 300, 60)
+into CHAP10HW_EMP values (7205, 'TEST_USER5', 'CLERK', 7201, to_date('20/07/2016','DD/MM/YYYY'), 2600, null, 70)
+into CHAP10HW_EMP values (7206, 'TEST_USER6', 'CLERK', 7201, to_date('08/09/2016','DD/MM/YYYY'), 2600, null, 70)
+into CHAP10HW_EMP values (7207, 'TEST_USER7', 'LECTURER', 7201, to_date('28/10/2016','DD/MM/YYYY'), 2300, null, 80)
+into CHAP10HW_EMP values (7208, 'TEST_USER8', 'STUDENT', 7201, to_date('09/03/2018','DD/MM/YYYY'), 1200, null, 80)
+select * from dual;
