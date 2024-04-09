@@ -64,7 +64,7 @@ a {
 }
 /* 800px 미만시, hi의 하단선 제거, ol의 오른쪽 선 제거, grid라는 아이디 부분을 grid -> block 변경 
 공간 침투 불가능. 하나의 요소는 한 행만 차지를 합니다. 결과, 세로 방향으로 하나의 요소씩만 차지한다. */
-@media(max-width :800px){
+@media(max-width :1440px){
     #grid {
         display: block;
     }
