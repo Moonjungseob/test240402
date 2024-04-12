@@ -1,0 +1,91 @@
+#test {
+    color: blueviolet;
+}
+body{
+    margin: 0;
+}
+
+
+h1{
+    color:blue;
+    font-size: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    margin: 0;
+}
+
+li{
+    margin: 3;
+}
+
+.img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+#img{
+    border: 2px solid pink;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: repeat(3.1fr) */
+  column-gap: 10px;
+  row-gap: 10px;
+
+}
+
+#grid{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+}
+
+#grid ol {
+    padding-left: 20px;
+}
+
+ol {
+    border-right: 1px solid gray;
+    width: 100px;
+    margin: 0;
+    padding: 15px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+#active {
+    color: red ;
+}
+
+.saw {
+    color: blueviolet;
+}
+/* 800px 미만시, hi의 하단선 제거, ol의 오른쪽 선 제거, grid라는 아이디 부분을 grid -> block 변경 
+공간 침투 불가능. 하나의 요소는 한 행만 차지를 합니다. 결과, 세로 방향으로 하나의 요소씩만 차지한다. */
+@media(max-width :800px){
+    #grid {
+        display: block;
+    }
+    #grid ol {
+        border-right: none;
+    }
+    h1 {
+        border-bottom: none;
+    }
+
+    #img{
+        border: 2px solid pink;
+      display: grid;
+      grid-template-columns:  1fr;
+      /* grid-template-columns: repeat(3.1fr) */
+      /* column-gap: 10px;
+      row-gap: 10px; */
+    
+    }
+
+
+
+}
+

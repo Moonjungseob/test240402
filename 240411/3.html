@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WEB1 - JavaScript </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- 함수 사용하기 -->
+    <input id="night_day" type="button" value="night" onclick="
+  nightDayHandler(this);
+  ">
+    <script>
+        // 준비물 키워드 : function , return :  예약어. 시스템에서 미리 사용중이라서, 
+        // 이름으로 사용불가. 
+
+        // 매개변수 : 받는 변수. 
+        // 1) 함수의 정의 부분 : function 함수명( 매개변수 ) { 실행이 될 문장. }
+        // 함수 이름: 시작은 소문자이고, 단어와 단어가 이어질 경우는 캐멀(낙타)케이스
+        // calcSumTest
+        // ex) function sum (a, b) { retrun a + b};
+        // 함수 정의시, 경우의수, 매개변수의 존재 유무, return 의 존재 유무 
+        // 매개변수 ,  return 
+        //  o           o
+        //  o           x
+        //  x           o
+        //  x           x
+
+        // 2) 함수를 사용 부분 : 함수명(인자값), 함수 호출(= 함수 사용)
+        // ex) sum(1,2) => 3 
+        // 결론, 함수를 사용시(호출시) 함수가 정의된 부분으로 간다. 
+
+        //body 부분에, 배경색, 글자색 변경 부분, 함수로 각각 분리
+        function BodySetColor(color) {
+                document.querySelector('body').style.color = color;
+            }
+        function BodySetBackgroudColor(color) {
+                document.querySelector('body').style.backgroundColor = color;
+            }    
+
+        // 색 변경 함수, 리팩토링 중
+        function LinksSetColor(color) {
+            var alist = document.querySelectorAll('a');
+            var i = 0;
+            while (i < alist.length) {
+                alist[i].style.color = color;
+                console.log(alist[i]);
+                i = i + 1;
+            }
+        }
+
+        // 1) 함수의 정의 부분. 
+        function nightDayHandler(self) {
+            // var target = document.querySelector('body');
+            if (self.value === 'night') {
+                // target.style.backgroundColor = 'black';
+                // target.style.color = 'white';
+                BodySetBackgroudColor('black');
+                BodySetColor('white');
+                self.value = 'day'
+                
+
+                //함수 사용
+                LinksSetColor('powderblue');
+
+            } else {
+                // target.style.backgroundColor = 'white';
+                // target.style.color = 'black';
+                BodySetBackgroudColor('white');
+                BodySetColor('black');
+                self.value = 'night'
+
+                //함수 사용
+                LinksSetColor('blue');
+
+            }
+        }
+    </script>
+
+    <h1><a href="index.html">WEB</a></h1>
+    <div id="grid">
+        <ol>
+            <li><a href="1.html">HTML</a></li>
+            <li><a href="2.html">CSS</a></li>
+            <li><a href="3.html">JavaScript</a></li>
+            <li><a href="4.html">사진첩</a></li>
+            <li><a href="ex1_jsTest.html">자바테스트</a></li>
+        </ol>
+        <div>
+            <h2>JavaScript 무엇인가?</h2>
+            <p style="margin-top: 40px;">
+                JavaScript (/ˈdʒɑːvəskrɪpt/),[10] often abbreviated JS, is a programming language that is one of
+                the core technologies of the World Wide Web, alongside HTML and CSS.[11] Over 97% of websites
+                use JavaScript on the client side for web page behavior,[12] often incorporating third-party
+                libraries.[13] All major web browsers have a dedicated JavaScript engine to execute
+                <img src="coding6.gif" width="50%">
+            <p style="margin-top: 40px;">
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
