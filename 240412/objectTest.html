@@ -39,13 +39,37 @@
         //기본 문법, for( var 받는 변수 in 반복 가능한것들)
         //반복 가능한 것들 중에서 하나씩 꺼내서, 앞에 있는 var 변수에 하나씩 할당
         for (var unit in starcraft) {
-            document.write('<h2>key :'  + unit + '</h2>' + '<br>');
+            document.write('<h2>key :' + unit + '</h2>' + '<br>');
         }
 
         for (var unit in starcraft) {
-            document.write('<h2>starcraft 키와 값 :'+ unit+',값: '  + starcraft[unit] + '</h2>' + '<br>');
+            document.write('<h2>starcraft 키와 값 :' + unit + ',값: ' + starcraft[unit] + '</h2>' + '<br>');
         }
     </script>
+    <h1>240412 연습장</h1>
+    <h2>Property & Method</h2>
+    <script>
+        //객체 속성에 함수를 만들기
+        starcraft.showAll = function () {
+            for (var unit in starcraft) {
+                document.write(unit + ' : ' + starcraft[unit] + '<br>');
+            }
+        }
+        //객체 속성의 함수를 사용하기
+        //showall도 속성값이라서 같이 튀어나옴 안예쁨
+        starcraft.showAll();
+    </script>
+    <h2>Property & Method -> this 대체</h2>
+    <script>
+    starcraft.showAll = function() {
+     for(var key in this) {
+        document.write(key + ' : ' + this[key] + '<br>');
+    }
+    }
+    starcraft.showAll();
+    </script>
+
+
 </body>
 
 </html>
