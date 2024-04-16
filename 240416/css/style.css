@@ -32,3 +32,13 @@
   top:15px;
 }
  
+#h1{
+  text-align: center;
+}
+
+.img{
+  width: 560px;
+  padding-left : 50px;
+  padding-top: 50px;
+
+}
