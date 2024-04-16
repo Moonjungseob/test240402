@@ -1,0 +1,34 @@
+#nav3 {
+    width: 100%;
+    position: relative;
+    text-align: center;
+  }
+  #nav3>a {
+    line-height: 80px;
+    display: block;
+    font-size: 30px;
+    font-weight: 900;
+    position: absolute;
+    padding : 0 30px;
+  }
+   #nav3>ul {
+    display: inline-block;
+  }
+  #nav3>ul li {
+    list-style-type: none;
+    float: left;
+    line-height: 60px;
+    padding: 0 50px;
+  }
+#pos1{
+  position: absolute;
+  right: 20px;
+  top:20px;
+}
+
+#pos2{
+  position: absolute;
+  right: 80px;
+  top:15px;
+}
+ 
