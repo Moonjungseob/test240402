@@ -5,6 +5,7 @@
   /* 그리드 내부에서의 행, 열에 여백 주기.  */
   column-gap: 20px;
   row-gap: 20px;
+  place-items: center;
 }
 
 .picture_container img {
@@ -12,6 +13,7 @@
   height: 80%;
   object-fit: cover;
   text-align: center;
+  
   
 }
 
@@ -107,7 +109,7 @@ body{
 }
 .image-container {
   flex: 1; /* 이미지 컨테이너가 1/3의 너비를 가지도록 설정 */
-  min-width: 560px;
+  min-width: 400px;
   max-height: 400px;
   align-items: center;
 

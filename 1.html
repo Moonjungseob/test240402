@@ -1,96 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WEB1 - HTML </title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/color.js"></script>
-    <script src="./js/jquery.min.js"></script>
-    <!-- 부트 스트랩 이용해서 , ui 가져오기 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    
+<title>cat - cat1 </title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="https://www.royalcanin.com/_next/static/css/51d401861c448b24.css">
+<script src="./js/style.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- <input id="night_day" type="button" value="night" onclick="
-    nightDayHandler(this);
-    ">
-    <button class="btn btn-primary rounded-pill px-3" type="button">Primary</button> -->
-    
-    <header class="p-3 text-bg-dark">
-        <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-              <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-            </a>
-    
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="index.html" class="nav-link px-2 text-secondary">HOME</a></li>
-              <li><a href="1.html" class="nav-link px-2 text-secondary">HTML</a></li>
-              <li><a href="2.html" class="nav-link px-2 text-white">CSS</a></li>
-              <li><a href="3.html" class="nav-link px-2 text-white">JavaScript</a></li>
-              <li><a href="4.html" class="nav-link px-2 text-white">사진첩</a></li>
-              <li><a href="ex1_jsTest.html" class="nav-link px-2 text-white">자바테스트</a></li>
-            </ul>
-    
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-              <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-            </form>
-    
-            <div class="text-end">
-              <button type="button" class="btn btn-outline-light me-2">Login</button>
-              <button type="button" class="btn btn-warning">Sign-up</button>
-            </div>
-          </div>
-        </div>
-      </header>
-    <div id="grid">
-        <ol>
-       
-        </ol>
-        <div>
-            <h2>HTML이란 무엇인가?</h2>
-            <p><a href="https://www.w3.org/TR/2011/WD-html5-20110405/" title="HTML5 specification">Hypertext Markup
-                    Language(HTML)</a> is the standard markup language for <strong>creating <u>web</u> pages</strong>
-                and web
-                applications.
-                Web browsers receive HTML documents from a web server or from local storage and render the documents
-                into
-                multimedia web pages. HTML describes the structure of a web page semantically and originally included
-                cues for the
-                appearance of the document.</p>
-            <img src="coding4.gif" width="50%">
-            <p style="margin-top: 40px;">
-                HTML elements are the building blocks of HTML pages. With HTML constructs, images and other objects such
-                as
-                interactive forms may be embedded into the rendered page. HTML provides a means to create structured
-                documents by
-                denoting structural semantics for text such as headings, paragraphs, lists, links, quotes and other
-                items. HTML elements are
-                delineated by tags, written using angle brackets.
-            </p>
-        </div>
+  <header>
+    <div>
+      <nav class="nav3">
+        <a href="index.html">냥컴</a>
+        <ul>
+          <li><a href="index.html#cat1">고양이 특징</a></li>
+          <li><a href="index.html#cat2">고양이 품종</a></li>
+        </ul>
+      </nav>
     </div>
-</body>
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <div class="col-md-4 d-flex align-items-center">
-      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-      </a>
-      <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Company, Inc</span>
-    </div>
+    <input type="button" id="pos1" value="로그인" onclick="location.href='#nav3' ">
+    <img src="./login.png" id="pos2" width=35px>
+  </header>
+  <h1>1. 러시안블루</h1>
+  <img class="picture_container" src="./cat2.jpg" width="50%">
+  
+  <div data-qa="layout-container" class="StyledLayoutContainerVariation-sc-g7gzyv-0 kYUubU"><div class="StyledVariation__StyledVariationWrapper-sc-lb9mq2-0 gXJWwg variations-wrapper" data-qa="variation"><div data-qa="variation-content" class="StyledVariation__StyledVariationItem-sc-lb9mq2-1 kiuDaR"><div data-qa="content-block" data-variant="media-left-text-right" class="StyledContentBlocks__StyledContentBlocksVariant-sc-18zr4gb-0 fUIqJt"><div data-qa="content-block-variant-inner" class="StyledContentBlocks__StyledContentBlocksVariantInner-sc-18zr4gb-2 cfYZlT"><div data-qa="content-blocks-media" class="StyledContentBlocks__StyledContentBlocksMedia-sc-18zr4gb-10 yDRYd"></div><div data-qa="content-blocks-text" class="StyledContentBlocks__StyledContentBlocksTextWrapper-sc-18zr4gb-9 feWusR"><h2 data-qa="content-block-title" class="StyledHeading__StyledH2-sc-kod34g-1 dCVJOw StyledContentBlocks__StyledContentBlocksTitle-sc-18zr4gb-1 geKBzB">러시안 블루 소개</h2><div data-qa="content-blocks-content" class="StyledContentBlocks__StyledContentBlocksContent-sc-18zr4gb-6 extMPM"><div class="StyledRichText-sc-i52idi-0 bEnHQw"><div><p>러시안 블루는 우호적이고 장난을 좋아하며, 가정에 입양되더라도 쉽게 잘 적응합니다. 기존에 다른 반려동물이 살고 있었더라도 잘 받아들이고 아이들과도 잘 지냅니다.</p>
+    <p>러시안 블루는은 다루기 쉽고 무난한 성격 이지만 외출을 할 경우 안전하게 보호된 공간을 제공해야만 부상 위험을 줄일 수 있습니다.</p>출처: WCC(World Cat Congress) 원문 번역</div></div></div><div class="StyledContentBlocks__StyledCTAWrapper-sc-18zr4gb-8 eVSXBw"></div></div></div></div></div><div data-qa="variation-content" class="StyledVariation__StyledVariationItem-sc-lb9mq2-1 kiuDaR"><div data-qa="content-block" data-variant="media-left-text-right" class="StyledContentBlocks__StyledContentBlocksVariant-sc-18zr4gb-0 fUIqJt"><div data-qa="content-block-variant-inner" class="StyledContentBlocks__StyledContentBlocksVariantInner-sc-18zr4gb-2 cfYZlT"><div data-qa="content-blocks-media" class="StyledContentBlocks__StyledContentBlocksMedia-sc-18zr4gb-10 yDRYd"></div><div data-qa="content-blocks-text" class="StyledContentBlocks__StyledContentBlocksTextWrapper-sc-18zr4gb-9 feWusR"><h2 data-qa="content-block-title" class="StyledHeading__StyledH2-sc-kod34g-1 dCVJOw StyledContentBlocks__StyledContentBlocksTitle-sc-18zr4gb-1 geKBzB">품종 세부 사항</h2><div data-qa="content-blocks-content" class="StyledContentBlocks__StyledContentBlocksContent-sc-18zr4gb-6 extMPM"><div class="StyledRichText-sc-i52idi-0 bEnHQw"><div>국가: 러시아<br>털: 단모종<br>크기: 중형<br>평균 기대 수명: 15-20 살<br>사교적 / 총명한 / 다정한 / 장난을 좋아함</div></div></div><div class="StyledContentBlocks__StyledCTAWrapper-sc-18zr4gb-8 eVSXBw"></div></div></div></div></div><div data-qa="variation-content" class="StyledVariation__StyledVariationItem-sc-lb9mq2-1 kiuDaR"><div data-qa="content-block" data-variant="media-left-text-right" class="StyledContentBlocks__StyledContentBlocksVariant-sc-18zr4gb-0 fUIqJt"><div data-qa="content-block-variant-inner" class="StyledContentBlocks__StyledContentBlocksVariantInner-sc-18zr4gb-2 cfYZlT"><div data-qa="content-blocks-media" class="StyledContentBlocks__StyledContentBlocksMedia-sc-18zr4gb-10 yDRYd"></div><div data-qa="content-blocks-text" class="StyledContentBlocks__StyledContentBlocksTextWrapper-sc-18zr4gb-9 feWusR"><h2 data-qa="content-block-title" class="StyledHeading__StyledH2-sc-kod34g-1 dCVJOw StyledContentBlocks__StyledContentBlocksTitle-sc-18zr4gb-1 geKBzB">주요 특징</h2><div data-qa="content-blocks-content" class="StyledContentBlocks__StyledContentBlocksContent-sc-18zr4gb-6 extMPM"><div class="StyledRichText-sc-i52idi-0 bEnHQw"><div>실외 울타리가 필요합니다.<br>그루밍이 거의 필요하지 않습니다.<br>어린이 및 기타 동물들과 잘 어울립니다.</div></div></div><div class="StyledContentBlocks__StyledCTAWrapper-sc-18zr4gb-8 eVSXBw"></div></div></div></div></div></div></div>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <div class="col-md-4 d-flex align-items-center">
+        
+        <span class="mb-3 mb-md-0 text-body-secondary" >© 2024 냥켓 Company, 문정섭</span>
+      </div>
+  
+     
+    </footer>
+  
 
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-      <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-      <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-    </ul>
-  </footer>
-</div>
+
+
+
+
+</body>
 
 </html>
