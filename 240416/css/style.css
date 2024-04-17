@@ -1,44 +1,193 @@
-#nav3 {
+#grid_pictures {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  /* 그리드 내부에서의 행, 열에 여백 주기.  */
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.picture_container img {
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  text-align: center;
+  
+}
+
+.picture_container {
+  border: 5px pink solid ;
+}
+
+
+
+body{
+  margin: 0;
+}
+.nav3 a:link, .nav3 a:visited{
+  display:block;
+  font-size:20px;
+  color:#000;
+  padding: 10px; 
+  text-decoration: none;  /* 밑줄 없앰 */
+  text-align: center;
+}
+
+.nav3 a:hover, .nav3 a:focus {
+  background-color:#222;  /* 배경 색 */
+  color:#fff;  /* 글자 색 */
+}
+
+.nav3 {
     width: 100%;
     position: relative;
     text-align: center;
   }
-  #nav3>a {
+  .nav3>a {
     line-height: 80px;
     display: block;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: 900;
     position: absolute;
     padding : 0 30px;
   }
-   #nav3>ul {
+   .nav3>ul {
     display: inline-block;
   }
-  #nav3>ul li {
+  .nav3>ul li {
     list-style-type: none;
     float: left;
     line-height: 60px;
     padding: 0 50px;
   }
+
+  header {
+    position: sticky;
+    top: 0px; /* 도달했을때 고정시킬 위치 */
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid rgb(0, 0, 0);
+    z-index: 10;
+  }
+
 #pos1{
   position: absolute;
   right: 20px;
   top:20px;
+  z-index: 12;
 }
 
 #pos2{
   position: absolute;
   right: 80px;
   top:15px;
+  z-index: 12;
 }
  
 #h1{
   text-align: center;
 }
 
-.img{
-  width: 560px;
-  padding-left : 50px;
-  padding-top: 50px;
+#h3{
+  margin: 0;
+}
+
+#slideshow-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px; /* 전체 슬라이드의 최대 너비 */
+  margin: auto;
+}
+.slide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.image-container {
+  flex: 1; /* 이미지 컨테이너가 1/3의 너비를 가지도록 설정 */
+  min-width: 560px;
+  max-height: 400px;
+  align-items: center;
+
+ 
+}
+
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+/* 작업중 */
+.image-container {
+  position: relative;
 
 }
+.caption-container {
+  flex: 3; /* 설명 컨테이너가 2/3의 너비를 가지도록 설정 */
+  padding: 10px;
+  min-width: 360px;
+}
+.caption {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.prev {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: auto;
+  padding: 16px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  z-index: 1; /* 버튼이 이미지 위에 오도록 설정 */
+}
+
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: auto;
+  padding: 16px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  z-index: 1; /* 버튼이 이미지 위에 오도록 설정 */
+}
+
+/* .prev {
+
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+.next {
+  right: 0;
+  border-radius: 0 3px 3px 0;
+} */
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.main{
+  display: flex;
+  }
+  #main1{
+    flex-direction: column;
+  }
+  #main2{
+    flex-direction: column;
+  }
+  #main3{
+    flex-direction: column;
+  }
