@@ -9,12 +9,25 @@
 }
 
 .picture_container img {
-  width: 80%;
+  width: 100%;
   height: 80%;
   object-fit: cover;
   text-align: center;
+}
+@media(max-width :1400px){
+  #grid {
+      display: block;
+  }
   
+  #grid_pictures{
+      border: 2px solid pink;
+    display: grid;
+    grid-template-columns:  1fr;
+    /* grid-template-columns: repeat(3.1fr) */
+    /* column-gap: 10px;
+    row-gap: 10px; */
   
+  }
 }
 
 .picture_container {
@@ -70,6 +83,7 @@ body{
     background-color: rgb(255, 255, 255);
     border-bottom: 2px solid rgb(0, 0, 0);
     z-index: 10;
+    background-image: url(../catft2.jpeg);
   }
 
 #pos1{
@@ -193,3 +207,5 @@ body{
   #main3{
     flex-direction: column;
   }
+
+  
