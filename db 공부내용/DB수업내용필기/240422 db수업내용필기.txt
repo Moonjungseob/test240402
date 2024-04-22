@@ -1,0 +1,437 @@
+set SERVEROUTPUT on;
+
+DECLARE
+    v_deptno_row    dept%rowtype; --dept에 들어있는 3개행 유형 전체 들고옴
+    v_number        number := 15;
+BEGIN
+    select deptno, dname, loc into v_deptno_row
+    from dept
+    where deptno=40;
+    if  mod(v_number,2) = 1    then
+        DBMS_OUTPUT.PUT_LINE(v_number  || ' 홀수입니다.');
+    else
+        DBMS_OUTPUT.PUT_LINE(v_number  || ' 짝수입니다.');
+    end if;    
+    
+    DBMS_OUTPUT.PUT_LINE('v_number : ' || v_number);
+    DBMS_OUTPUT.PUT_LINE('------ ');
+    DBMS_OUTPUT.PUT_LINE('DEPTNO : ' || v_deptno_row.deptno );
+    DBMS_OUTPUT.PUT_LINE('DNAME : ' ||  v_deptno_row.dname );
+    DBMS_OUTPUT.PUT_LINE('LOC    : ' || v_deptno_row.loc );
+end;
+/
+
+BEGIN
+    for i in 0..4 loop
+        continue when mod(i,2) = 1;
+        DBMS_OUTPUT.PUT_LINE('현재 i 의 값 ' || i);
+    end loop;
+End;
+/
+
+BEGIN
+    for i in 1..10 loop
+        if mod(i,2) = 1 then
+            DBMS_OUTPUT.PUT_LINE('현재 i 의 값 ' || i);
+        end if;    
+    end loop;
+end;
+/
+
+BEGIN
+    for k in 1..10 loop
+        continue when  mod(k,2)=0;
+        DBMS_OUTPUT.PUT_LINE('현재 k 의 값 ' || k);
+    end loop;
+end;
+/
+
+DECLARE
+    v_deptno  dept.deptno%type := &p_deptno;  
+BEGIN
+    case  v_deptno
+        when 10 then   DBMS_OUTPUT.PUT_LINE('DNAME : ACCOUNTING');
+        when 20 then   DBMS_OUTPUT.PUT_LINE('DNAME : RESEARCH');
+        when 30 then   DBMS_OUTPUT.PUT_LINE('DNAME : SALES');
+        when 40 then   DBMS_OUTPUT.PUT_LINE('DNAME : OPERATIONS');
+        else   DBMS_OUTPUT.PUT_LINE('DNAME : N/A');
+    end case;    
+end;
+/
+
+--p428
+create table dept_recode 
+as select *
+from dept;
+
+select * from dept_recode;
+
+DECLARE
+    type REC_DEPT is record(
+        deptno number(2) not null :=99,
+        dname dept.dname%type,
+        loc dept.loc%type
+     );
+     dept_rec REC_DEPT;
+      
+BEGIN
+    dept_rec.deptno := 99;
+    dept_rec.dname := 'DATABASE';
+    dept_rec.loc := 'SEOUL';
+    insert into dept_recode values dept_rec;
+end;
+/
+
+
+--10번 부서 정보 출력  record형 이용
+DECLARE
+    type REC_DEPT is record(
+        deptno dept.deptno%type,
+        dname dept.dname%type,
+        loc dept.loc%type
+     );
+     rec REC_DEPT;
+BEGIN
+    select * into rec 
+    from  dept_recode
+    where deptno=10;
+    dbms_output.put_line(rec.deptno || ' ' || rec.dname || ' ' || rec.loc);
+end;
+/
+
+accept pdetpno prompt '부서번호입력:'
+DECLARE
+    type REC_DEPT is record(
+        deptno dept.deptno%type,
+        dname dept.dname%type,
+        loc dept.loc%type
+     );
+     rec REC_DEPT;
+BEGIN
+    select * into rec 
+    from  dept_recode
+    where deptno= &pdetpno;
+    dbms_output.put_line(rec.deptno || ' ' || rec.dname || ' ' || rec.loc);
+end;
+/
+
+--p460 커서 : select 문 또는 데이터 조작어 같은 sql문 실행했을 때 해당 sql 문을 처리하는 정보를 저장한 메모리 공간
+
+
+--corsor
+-- open fetch close ===> for loop end
+
+select * from emp where deptno =20;
+--20번 부서에 속한 사원 번호, 이름, 급여 출력
+
+DECLARE
+    vemp emp%rowType;
+    cursor c1 is
+    select empno, ename, sal 
+    from  emp
+    where deptno=20;
+BEGIN
+    dbms_output.put_line('번호, 이름, 급여');
+    for vemp in c1 loop
+    exit when c1%notfound;
+        dbms_output.put_line(vemp.empno || ' ' ||vemp.ename || ' ' || vemp.sal);
+    end loop;
+end;
+/
+
+--emp 테이블의 모든 사원 이름과 급여 출력하고 회원들의 급여 합도 출력
+select ename, sal from emp;
+select sum(sal) from emp;
+
+declare 
+    vemp emp%rowType;
+    cursor emp_cursor is
+    select ename, sal
+    from emp order by sal desc;
+    tot number :=0;
+begin
+    for cur_var in emp_cursor  loop
+    exit when emp_cursor%notfound;
+    tot := tot + cur_var.sal;
+        dbms_output.put_line(cur_var.ename || ' ' || cur_var.sal);
+    end loop;
+        dbms_output.put_line('총급여액 : ' || tot);
+    end;
+    /
+
+select ename, sal from emp order by sal desc;
+--사원들 급여 현황 급여의 내림차순으로 출력
+--이름 별표(100에 별표하나) <- 반올림(sal)
+--예 james(950) : james*********(950)
+
+declare 
+    vemp emp%rowType;
+    cursor star_cursor is
+    select ename, sal
+    from emp order by sal desc;
+     cnt number :=0;
+     star VARCHAR2(100);
+begin
+    for cur_var in star_cursor  loop
+    cnt:=  round(cur_var.sal/100);
+    star := null;
+    for i in 1..cnt loop
+        star := star || '*';
+        end loop;
+        dbms_output.put_line(cur_var.ename ||' '||star||' ('||cur_var.sal ||')');
+    end loop;
+end;
+/
+
+---프로시저 (declare 선언하는거 매번 안하게 하는 것)
+create or replace table emp_mon
+as
+select  * 
+from emp;
+
+create or replace PROCEDURE emp_proce(
+    v_empno in emp.empno%type,
+    v_ename in emp.ename%type,
+    v_job in emp.job%type,
+    v_manager in emp.mgr%type,
+    v_sal in emp.sal%type)
+IS   
+begin
+    insert into emp_mon(empno, ename, job, mgr, sal)
+    values(v_empno,v_ename,v_job,v_manager,v_sal);
+end;
+/
+
+execute --프로시저 실행문 
+emp_proce(4000, '홍길동', '사원', 5000, 800); --괄호 있어야함 '함수'
+execute emp_proce(4001, '홍길동1', '사원1', 5000, 900); 
+select * from emp_mon;
+
+--부서명, 인원수, 급여합계를 구하는 프로시저(sumProcess) 작성
+select d.dname 부서명, count(e.empno) 인원수, sum(e.sal) 금여합계
+from emp e, dept d
+where e.deptno=d.deptno
+group by d.dname;
+
+create or replace procedure sumProcess
+is 
+    cursor sum_cur is 
+    select d.dname 부서명, count(e.empno) 인원, sum(e.sal) 급여합계
+    from emp e, dept d
+    where e.deptno=d.deptno
+    group by d.dname;
+
+begin
+  for i in sum_cur loop
+        dbms_output.put_line('부서명 :'||i.부서명);
+        dbms_output.put_line('인원 :'||i.인원);
+        dbms_output.put_line('급여합계 :'||i.급여합계);
+    end loop;
+end;
+/
+execute sumProcess();
+
+--p484
+create or replace procedure pro_noparam
+is
+v_empno number(4) := 7788;
+v_ename varchar2(10);
+begin
+    v_ename :='SCOTT';
+    dbms_output.put_line('v_empno : ' || v_empno);
+    dbms_output.put_line('v_ename : ' || v_ename);
+end;
+/
+
+execute pro_noparam();
+
+--p488
+--in은 디폴트 값으로 생략가능
+create or replace procedure pro_praram_in(
+    param1 in number,
+    param2 number,
+    param3 number :=3,
+    param4 number :=4   
+)
+is
+begin
+     dbms_output.put_line('param1 : ' || param1);
+     dbms_output.put_line('param2 : ' || param2);
+     dbms_output.put_line('param3 : ' || param3);
+     dbms_output.put_line('param4 : ' || param4);
+end;
+/
+
+execute pro_praram_in(1, 2, 9, 8);
+execute pro_praram_in(1, 2);
+--execute pro_praram_in(1); 오류발생 param2에 해당하는 값 없음
+execute pro_praram_in(param1 => 10, param2 => 20);
+
+--p 490 OUT
+create or replace procedure pro_praram_out(
+    in_empno in emp.empno%type,
+    out_ename out emp.ename%type,
+    out_sal out emp.sal%type
+)
+is
+begin
+select ename, sal into out_ename, out_sal
+from emp
+where empno = in_empno;
+end;
+/
+
+declare
+    v_ename emp.ename%type;
+    v_sal emp.sal%type
+begin
+    pro_praram_out(7788, v_ename, v_sal);
+    dbms_output.put_line('ename : ' || v_ename);
+    dbms_output.put_line('sal : ' || v_sal);
+end;
+/
+
+
+set serveroutput on;
+
+select * from employees;
+select * from employees 
+where employee_id=200;
+--employee_id=200인 사원의 사원번호와 이름
+select employee_id, first_name from employees 
+where employee_id=200;
+
+DECLARE
+ vno number(4);
+ vname VARCHAR2(10);
+BEGIN
+select employee_id, first_name into vno, vname
+from employees
+where employee_id=200;
+dbms_output.put_line(vno || ' ' || vname);
+end;
+/
+
+--employee_id = 200인 회사원의 id 급여 출력
+
+DECLARE
+ vno number(4);
+ vname VARCHAR2(10);
+ vsal number(5);
+BEGIN
+select employee_id, first_name, salary into vno, vname, vsal
+from employees
+where employee_id=200;
+dbms_output.put_line(vno || ' ' || vname || ' ' || vsal);
+end;
+/
+--employee_id = 200인 회사원의 모든 정보 추출해서 아이디, 이름, 입사일 출력
+
+DECLARE
+ vemployees employees%rowType;
+ 
+BEGIN
+select * into vemployees
+from employees
+where employee_id=200;
+dbms_output.put_line(vemployees.employee_id || ' ' ||vemployees. first_name || ' ' || vemployees.hire_date);
+end;
+/
+
+/*
+EMPLOYEES 에서 DEPARTMENT_ID, FIRST_NAME,SALARY, PHONE_NUMBER,
+기타를 출력하되 
+급여는 천단위 분리 기호 사용
+급여가 5000이하인 경우 기타에 '저임금', 5000~10000 '보통임금',
+10000 초과 '고임금'  
+*/
+
+select * from employees;
+
+DECLARE
+ cursor etc_cursor is
+ select DEPARTMENT_ID, FIRST_NAME, SALARY, PHONE_NUMBER
+ from employees;
+ etc VARCHAR2(20);
+BEGIN
+for  i in etc_cursor   loop
+        if i.SALARY > 10000 then etc := '고임금';
+        ELSIF i.SALARY > 5000 then etc :='보통임금';
+        ELSIF i.SALARY <= 5000 then etc :='저임금';
+        end if;
+dbms_output.put_line(i.DEPARTMENT_ID ||' '||i.FIRST_NAME ||' '
+        ||to_char(i.SALARY,'999,999') ||' '||i.PHONE_NUMBER||' '||etc);
+ 
+end loop;
+
+end;
+/
+
+--case 문 사용
+DECLARE
+    CURSOR etc_cursor is
+    select DEPARTMENT_ID,FIRST_NAME,SALARY, PHONE_NUMBER
+    from EMPLOYEES;
+    
+    etc VARCHAR2(20);
+BEGIN
+    for  i in etc_cursor   loop
+        case
+        when i.SALARY > 10000 then etc := '고임금';
+        when i.SALARY > 5000 then etc :='보통임금';
+        when i.SALARY <= 5000 then etc :='저임금';
+        end case;
+    
+        dbms_output.put_line(i.DEPARTMENT_ID ||' '||i.FIRST_NAME ||' '
+        ||to_char(i.SALARY,'999,999') ||' '||i.PHONE_NUMBER||' '||etc);
+  
+    end loop;
+
+end;
+/
+/*
+사번, 성명, 부서코드, 부서명, 기타를 출력하되,
+부서코드가 80이면 '우리부서', 아니면 '타부서'를 기타 자리에 출력.
+EMPLOYEES   DEPARTMENTS
+*/
+
+DECLARE
+    CURSOR etc_cursor is
+    select e.employee_id, e.DEPARTMENT_ID, e.FIRST_NAME, d.department_name
+    from EMPLOYEES e, departments d
+    where e.DEPARTMENT_ID=d.DEPARTMENT_ID;
+  etc VARCHAR2(20);
+  begin
+  for  i in etc_cursor   loop
+        if i.DEPARTMENT_ID = 80 then etc := '우리부서';
+        else etc :='타부서';
+        end if;
+         dbms_output.put_line(i.employee_id||' '||i.FIRST_NAME || ' ' || i.DEPARTMENT_ID  ||' ' || i.department_name ||' '||etc);
+   end loop;
+   
+
+end;
+/
+
+DECLARE
+    CURSOR etc_cursor is
+    select e.employee_id, e.DEPARTMENT_ID, e.FIRST_NAME, d.department_name
+    from EMPLOYEES e join departments d
+    on e.DEPARTMENT_ID=d.DEPARTMENT_ID;
+  etc VARCHAR2(20);
+  begin
+  for  i in etc_cursor   loop
+        if i.DEPARTMENT_ID = 80 then etc := '우리부서';
+        else etc :='타부서';
+        end if;
+         dbms_output.put_line(i.employee_id||' '||i.FIRST_NAME || ' ' || i.DEPARTMENT_ID  ||' ' || i.department_name ||' '||etc);
+   end loop;
+   
+
+end;
+/
+        
+
+
+
+
